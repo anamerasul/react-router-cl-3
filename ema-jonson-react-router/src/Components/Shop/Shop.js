@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb ,getStoredCart} from '../../Utilities/FakeDb';
+import { addToDb, getStoredCart } from '../../Utilities/FakeDb';
 import Cart from '../Cart/Cart';
+import UseProducts from '../Hooks/UseProduct';
 import Product from '../Product/Product';
 import "./Shop.css"
 const Shop = () => {
 
-    const [products,setProducts]=useState([])
+    // const [products,setProducts]=useState([])
+    const [products, setProducts] = UseProducts([])
+    const [cart, setCart] = useState([])
+    // console.log(cart)
+    // useEffect(()=>{
+    //     console.log('before fetch')
+    //     fetch('products.json')
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //         setProducts(data)
+    //     console.log('after fetch load')
+    //     })
 
-    const [cart,setCart]=useState([])
-    console.log(cart)
-    useEffect(()=>{
-        console.log('before fetch')
-        fetch('products.json')
-        .then(res=>res.json())
-        .then(data=>{
-            setProducts(data)
-        console.log('after fetch load')
-        })
+    // },[])
 
-    },[])
-
-    const handleAddtoCart=(sproduct)=>{
+    const handleAddtoCart = (sproduct) => {
         console.log(sproduct)
-        let newCart=[]
+        let newCart = []
         // cart.push(product)
-        const exits=cart.find(product=>product.id===sproduct.id)
-        if(!exits){
-            sproduct.quantity=1
-            newCart =[...cart,sproduct];
+        const exits = cart.find(product => product.id === sproduct.id)
+        if (!exits) {
+            sproduct.quantity = 1
+            newCart = [...cart, sproduct];
         }
 
-        else{
-            const restCart=cart.filter(product=>product.id !==sproduct.id)
-            exits.quantity=exits.quantity+1
-            newCart =[...restCart,exits]
+        else {
+            const restCart = cart.filter(product => product.id !== sproduct.id)
+            exits.quantity = exits.quantity + 1
+            newCart = [...restCart, exits]
         }
         // newCart =[...cart,sproduct];
 
@@ -41,27 +42,27 @@ const Shop = () => {
         addToDb(sproduct.id)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('local')
-const storedCart=getStoredCart()
+        const storedCart = getStoredCart()
 
-console.log(storedCart)
-const savedCart=[]
+        console.log(storedCart)
+        const savedCart = []
 
-for(const id in storedCart){
-    console.log(id)
-    const addedProduct=products.find(product=>product.id===id)
-    // console.log(addedProduct)
+        for (const id in storedCart) {
+            console.log(id)
+            const addedProduct = products.find(product => product.id === id)
+            // console.log(addedProduct)
 
-    if(addedProduct){
-        const quantity=storedCart[id];
-        addedProduct.quantity=quantity
-        console.log(addedProduct)
-        savedCart.push(addedProduct)
-    }
-}
-setCart(savedCart)
-console.log('local finished')
+            if (addedProduct) {
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity
+                console.log(addedProduct)
+                savedCart.push(addedProduct)
+            }
+        }
+        setCart(savedCart)
+        console.log('local finished')
     }, [products])
 
     return (
@@ -73,11 +74,11 @@ console.log('local finished')
                 {/* <h3>This is for product:{products.length}</h3> */}
 
                 {
-                    products.map(product=><Product
+                    products.map(product => <Product
                         key={product.id}
                         handleAddtoCart={handleAddtoCart}
                         product={product}
-                        ></Product>)
+                    ></Product>)
 
                 }
             </div>

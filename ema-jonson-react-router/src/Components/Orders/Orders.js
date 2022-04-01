@@ -9,8 +9,7 @@ const Orders = () => {
     const [cart, setCart] = UseCart(product)
     return (
         <div className='grid lg:grid-cols-[4fr,1fr] sm:grid-cols-[3fr,1fr] grid-cols-[1fr,1fr]'>
-            <div className='products-container sm:mx-[100px] sm:my-[50px] sm:ml-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[45px]
-            sm:gap-[9rem]'>
+            <div className='sm:mx-[100px] sm:my-[50px] grid grid-cols-1 lg:gap-[25px] ml-auto'>
                 {
                     cart.map(product => <ReviewItem
                         key={product.id}

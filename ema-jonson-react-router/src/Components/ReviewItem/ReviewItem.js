@@ -12,7 +12,7 @@ const ReviewItem = (props) => {
             </div>
 
             <div className="review-detail-container flex justify-between w-full">
-                <div className="reviewDetails">
+                <div className="mx-12 reviewDetails">
                     <p title={name}>name:{name.length > 20 ? name.slice(0, 15) + '...' : name}</p>
                     <p>Price: <span>{price}</span></p>
                     <p><small>shipping:{shipping}</small></p>

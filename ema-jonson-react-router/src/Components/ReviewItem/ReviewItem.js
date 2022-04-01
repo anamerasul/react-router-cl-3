@@ -1,9 +1,10 @@
 import React from 'react';
+import { MdDelete } from "react-icons/md";
 import './ReviewItem.css'
 
 const ReviewItem = (props) => {
-
-    const { name, img, price, shipping, quantity } = props.product
+    const { product, handleRemoveProduct } = props
+    const { name, img, price, shipping, quantity } = product
     return (
         <div className='border-2 my-2 flex'>
             <div className='w-1/4'>
@@ -17,8 +18,9 @@ const ReviewItem = (props) => {
                     <p><small>shipping:{shipping}</small></p>
                     <p><small>Quantity:{quantity}</small></p>
                 </div>
-                <div className="delete-container ml-20 my-10">
-                    <button className='rounded-full bg-black text-white w-24'>Delete</button>
+                <div className="delete-container ml-20 my-10 mx-6">
+                    <button className='rounded-full bg-orange-400 text-white w-24 h-6 text-lg ' onClick={() => handleRemoveProduct(product)}> <MdDelete className='mx-auto'></MdDelete></button>
+
                 </div>
             </div>
 

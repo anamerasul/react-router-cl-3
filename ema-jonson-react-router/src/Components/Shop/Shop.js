@@ -3,6 +3,7 @@ import { addToDb, getStoredCart } from '../../Utilities/FakeDb';
 import Cart from '../Cart/Cart';
 import UseProducts from '../Hooks/UseProduct';
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 import "./Shop.css"
 const Shop = () => {
 
@@ -48,7 +49,6 @@ const Shop = () => {
         const savedCart = []
 
         for (const id in storedCart) {
-            console.log(id)
             const addedProduct = products.find(product => product.id === id)
             // console.log(addedProduct)
 
@@ -80,7 +80,11 @@ const Shop = () => {
             </div>
             <div className="cart-container sticky top-0 h-[900px] ml-auto bg-orange-300 w-full ">
 
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <Link className='bg-slate-300' to='/order'>
+                        <button>Rewiew order</button>
+                    </Link>
+                </Cart>
             </div>
         </div>
     );

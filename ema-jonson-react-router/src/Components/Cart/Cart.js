@@ -2,20 +2,18 @@ import React from 'react';
 
 const Cart = (props) => {
     const { cart } = props
-    // console.log(props)
+    console.log(props)
     // console.log(cart)
     let total = 0
     let shipping = 0
     let quantity = 0
     for (const product of cart) {
-        console.log(product)
         total = total + product.price * product.quantity
         shipping = shipping + product.shipping * product.quantity
         quantity = +quantity + product.quantity
     }
 
     const tax = (total * 0.1).toFixed(2)
-    console.log(typeof +tax);
 
     const gTotal = (+total) + (+shipping) + (+tax)
 
@@ -28,6 +26,7 @@ const Cart = (props) => {
             <p>Total Shipping:{shipping}</p>
             <p>Tax:{tax}</p>
             <h5>Grand:Total:{gTotal}</h5>
+            {props.children}
         </div>
     );
 };

@@ -4,7 +4,7 @@ import Cart from '../Cart/Cart';
 import UseCart from '../Hooks/UseCart';
 import UseProducts from '../Hooks/UseProduct';
 import ReviewItem from '../ReviewItem/ReviewItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Orders.css'
 const Orders = () => {
     const [product, setProduct] = UseProducts()
@@ -17,6 +17,10 @@ const Orders = () => {
         setCart(rest);
         removeFromDb(product.id)
     }
+
+    const navigate = useNavigate();
+
+
     return (
         <div className='grid lg:grid-cols-[4fr,1fr] sm:grid-cols-[3fr,1fr] grid-cols-[1fr,1fr]'>
             <div className='sm:mx-[100px] sm:my-[50px] grid grid-cols-1 lg:gap-[25px] ml-auto'>
@@ -33,9 +37,9 @@ const Orders = () => {
             <div className='bg-orange-400 sticky top-0 h-[900px] ml-auto'>
                 <Cart cart={cart}>
 
-                    <Link to="/inventory">
-                        <button className="bg-green-600">Procced checkout</button>
-                    </Link>
+                    {/* <Link to="/inventory"> */}
+                    <button onClick={() => navigate('/inventory')} className="bg-green-600">Procced checkout</button>
+                    {/* /* </Link> */}
                 </Cart>
             </div>
 

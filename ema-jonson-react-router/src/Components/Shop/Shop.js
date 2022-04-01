@@ -22,7 +22,7 @@ const Shop = () => {
     // },[])
 
     const handleAddtoCart = (sproduct) => {
-        console.log(sproduct)
+        // console.log(sproduct)
         let newCart = []
         // cart.push(product)
         const exits = cart.find(product => product.id === sproduct.id)
@@ -43,10 +43,8 @@ const Shop = () => {
     }
 
     useEffect(() => {
-        console.log('local')
         const storedCart = getStoredCart()
 
-        console.log(storedCart)
         const savedCart = []
 
         for (const id in storedCart) {
@@ -57,12 +55,10 @@ const Shop = () => {
             if (addedProduct) {
                 const quantity = storedCart[id];
                 addedProduct.quantity = quantity
-                console.log(addedProduct)
                 savedCart.push(addedProduct)
             }
         }
         setCart(savedCart)
-        console.log('local finished')
     }, [products])
 
     return (
